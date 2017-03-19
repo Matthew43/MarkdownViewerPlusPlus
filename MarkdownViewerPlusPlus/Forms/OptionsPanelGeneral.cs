@@ -81,6 +81,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             options.inclNewFiles = this.chkBoxNewFiles.Checked;
             options.fileExtensions = this.txtFileExtensions.Text;
+            options.refreshTimeout = (int)this.numRefresh.Value;
         }
 
         /// <summary>
@@ -90,6 +91,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             this.chkBoxNewFiles.Checked = options.inclNewFiles;
             this.txtFileExtensions.Text = options.fileExtensions;
+            this.numRefresh.Value = options.refreshTimeout;
         }
     }
 }

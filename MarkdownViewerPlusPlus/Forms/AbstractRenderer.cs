@@ -12,7 +12,6 @@ using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 using static com.insanitydesign.MarkdownViewerPlusPlus.Windows.WindowsMessage;
 using System.Drawing.Printing;
-using CommonMark;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
 using System.Xml.Linq;
 using PdfSharp.Pdf;
@@ -140,8 +139,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public virtual void Render(string text, FileInformation fileInfo)
         {
             FileInfo = fileInfo;
-            RawText = text;
-            ConvertedText = CommonMarkConverter.Convert(text);
+            RawText = text;            
         }
 
         /// <summary>

@@ -7,6 +7,8 @@ using System.Net;
 using System.Threading;
 using TheArtOfDev.HtmlRenderer.Core.Entities;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
+using CommonMark;
+using System.Threading.Tasks;
 
 /// <summary>
 /// 
@@ -45,6 +47,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
             this.Controls.Add(this.markdownViewerHtmlPanel);
         }
 
+
+        protected CancellationTokenSource cancellationToken;
+
+        protected long lastRefreshMillis = 0;
+
         /// <summary>
         /// 
         /// </summary>
@@ -53,7 +60,28 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public override void Render(string text, FileInformation fileInfo)
         {
             base.Render(text, fileInfo);
-            this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, fileInfo.FileName);
+            //Check whether the last refresh has passed long enough
+            long currentMillis = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+            if ((currentMillis - this.markdownViewer.Options.refreshTimeout) <= this.lastRefreshMillis)
+            {
+                this.cancellationToken.Cancel();                      
+            }
+            //Create a cancellation token to cancel later (maybe)
+            this.cancellationToken = new CancellationTokenSource();
+            var token = this.cancellationToken.Token;
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(this.markdownViewer.Options.refreshTimeout);
+                //Only refresh if it hasn't been cancelled
+                if(!token.IsCancellationRequested)
+                {
+                    ConvertedText = CommonMarkConverter.Convert(text);
+                    this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, FileInfo.FileName);
+                }                
+            }, token);
+
+            //Set last refresh
+            this.lastRefreshMillis = currentMillis;
         }
 
         /// <summary>

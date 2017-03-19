@@ -86,6 +86,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
             /// 
             /// </summary>
             public bool htmlOpenExport;
+
+            /// <summary>
+            /// 
+            /// </summary>
+            public int refreshTimeout;
         }
 
         /// <summary>
@@ -148,6 +153,10 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 {
                     field.SetValue(options, (Win32.GetPrivateProfileInt(this.assemblyName, field.Name, 0, iniFilePath) != 0));
                 }
+                else if (field.FieldType == typeof(int))
+                {
+                    field.SetValue(options, Win32.GetPrivateProfileInt(this.assemblyName, field.Name, 0, iniFilePath));
+                }
                 else if (field.FieldType == typeof(string))
                 {
                     StringBuilder sbFieldValue = new StringBuilder(32767);
@@ -183,7 +192,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 {
                     Win32.WritePrivateProfileString(this.assemblyName, field.Name, ((bool)value) ? "1" : "0", iniFilePath);
                 }
-                else if (field.FieldType == typeof(string) || field.FieldType.IsEnum)
+                else if (field.FieldType == typeof(string) || field.FieldType.IsEnum || field.FieldType == typeof(int))
                 {
                     Win32.WritePrivateProfileString(this.assemblyName, field.Name, value.ToString(), iniFilePath);
                 }
@@ -220,7 +229,8 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus
                 synchronizeScrolling = false,
                 margins = "5,5,5,5",
                 pdfOpenExport = false,
-                htmlOpenExport = false
+                htmlOpenExport = false,
+                refreshTimeout = 0
             };
             return options;
         }

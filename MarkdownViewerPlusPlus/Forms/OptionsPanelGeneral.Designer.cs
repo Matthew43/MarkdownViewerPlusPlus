@@ -34,7 +34,12 @@
             this.toolTipFileExtensions = new System.Windows.Forms.ToolTip(this.components);
             this.grpBoxFiles = new System.Windows.Forms.GroupBox();
             this.txtFileExtensions = new System.Windows.Forms.TextBox();
+            this.grpGeneral = new System.Windows.Forms.GroupBox();
+            this.lblRefresh = new System.Windows.Forms.Label();
+            this.numRefresh = new System.Windows.Forms.NumericUpDown();
             this.grpBoxFiles.SuspendLayout();
+            this.grpGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefresh)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFileExtensions
@@ -73,7 +78,7 @@
             this.grpBoxFiles.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpBoxFiles.Location = new System.Drawing.Point(0, 0);
             this.grpBoxFiles.Name = "grpBoxFiles";
-            this.grpBoxFiles.Size = new System.Drawing.Size(1255, 86);
+            this.grpBoxFiles.Size = new System.Drawing.Size(1285, 85);
             this.grpBoxFiles.TabIndex = 3;
             this.grpBoxFiles.TabStop = false;
             this.grpBoxFiles.Text = "Files";
@@ -84,19 +89,57 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtFileExtensions.Location = new System.Drawing.Point(9, 36);
             this.txtFileExtensions.Name = "txtFileExtensions";
-            this.txtFileExtensions.Size = new System.Drawing.Size(1240, 20);
+            this.txtFileExtensions.Size = new System.Drawing.Size(1270, 20);
             this.txtFileExtensions.TabIndex = 1;
+            // 
+            // grpGeneral
+            // 
+            this.grpGeneral.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.grpGeneral.Controls.Add(this.numRefresh);
+            this.grpGeneral.Controls.Add(this.lblRefresh);
+            this.grpGeneral.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpGeneral.Location = new System.Drawing.Point(0, 85);
+            this.grpGeneral.Name = "grpGeneral";
+            this.grpGeneral.Size = new System.Drawing.Size(1285, 65);
+            this.grpGeneral.TabIndex = 4;
+            this.grpGeneral.TabStop = false;
+            this.grpGeneral.Text = "General";
+            // 
+            // lblRefresh
+            // 
+            this.lblRefresh.AutoSize = true;
+            this.lblRefresh.Location = new System.Drawing.Point(9, 20);
+            this.lblRefresh.Name = "lblRefresh";
+            this.lblRefresh.Size = new System.Drawing.Size(114, 13);
+            this.lblRefresh.TabIndex = 0;
+            this.lblRefresh.Text = "Refresh timeout (in ms)";
+            // 
+            // numRefresh
+            // 
+            this.numRefresh.Location = new System.Drawing.Point(12, 37);
+            this.numRefresh.Maximum = new decimal(new int[] {
+            99999,
+            0,
+            0,
+            0});
+            this.numRefresh.Name = "numRefresh";
+            this.numRefresh.Size = new System.Drawing.Size(120, 20);
+            this.numRefresh.TabIndex = 1;
             // 
             // OptionsPanelGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.grpGeneral);
             this.Controls.Add(this.grpBoxFiles);
             this.Name = "OptionsPanelGeneral";
-            this.Size = new System.Drawing.Size(1255, 626);
+            this.Size = new System.Drawing.Size(1285, 626);
             this.grpBoxFiles.ResumeLayout(false);
             this.grpBoxFiles.PerformLayout();
+            this.grpGeneral.ResumeLayout(false);
+            this.grpGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefresh)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -108,5 +151,8 @@
         private System.Windows.Forms.ToolTip toolTipFileExtensions;
         private System.Windows.Forms.GroupBox grpBoxFiles;
         private System.Windows.Forms.TextBox txtFileExtensions;
+        private System.Windows.Forms.GroupBox grpGeneral;
+        private System.Windows.Forms.NumericUpDown numRefresh;
+        private System.Windows.Forms.Label lblRefresh;
     }
 }
