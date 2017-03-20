@@ -19,7 +19,6 @@ using System.IO;
 using System.Net;
 using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
-using Markdig;
 
 /// <summary>
 /// 
@@ -140,8 +139,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         public virtual void Render(string text, FileInformation fileInfo)
         {
             FileInfo = fileInfo;
-            RawText = text;            
-            ConvertedText = Markdown.ToHtml(text, this.markdownPipeline);
+            RawText = text;
         }
 
         /// <summary>
