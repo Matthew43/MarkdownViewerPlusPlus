@@ -19,6 +19,7 @@ using System.IO;
 using System.Net;
 using com.insanitydesign.MarkdownViewerPlusPlus.Helper;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
+using Markdig;
 
 /// <summary>
 /// 
@@ -59,6 +60,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         protected virtual FileInformation FileInfo { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
 
         /// <summary>
         /// 
@@ -140,6 +146,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         {
             FileInfo = fileInfo;
             RawText = text;            
+            ConvertedText = Markdown.ToHtml(text, this.markdownPipeline);
         }
 
         /// <summary>
