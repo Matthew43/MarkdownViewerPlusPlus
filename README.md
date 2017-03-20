@@ -17,7 +17,8 @@ A Notepad++ Plugin to view a Markdown file rendered on-the-fly
 * BugFixes ^^'
 
 ## Latest Versions
-* 0.7.5
+* 0.8.0
+  * Added delayed rendering to compensate for fast typing (optimization)
   * Changed CommonMark converter to [Markdig][3]
 * 0.7.1
   * Added handling of local image files
