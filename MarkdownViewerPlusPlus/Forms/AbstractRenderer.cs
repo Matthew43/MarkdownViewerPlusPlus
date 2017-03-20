@@ -64,11 +64,6 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// <summary>
         /// 
         /// </summary>
-        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="markdownViewer"></param>
         public AbstractRenderer(MarkdownViewer markdownViewer)
         {

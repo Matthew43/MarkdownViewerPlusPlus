@@ -7,7 +7,7 @@ using System.Net;
 using System.Threading;
 using TheArtOfDev.HtmlRenderer.Core.Entities;
 using static com.insanitydesign.MarkdownViewerPlusPlus.MarkdownViewer;
-using CommonMark;
+using Markdig;
 using System.Threading.Tasks;
 
 /// <summary>
@@ -24,6 +24,11 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
         /// 
         /// </summary>
         public MarkdownViewerHtmlPanel markdownViewerHtmlPanel;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected MarkdownPipeline markdownPipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
 
         /// <summary>
         /// 
@@ -75,7 +80,7 @@ namespace com.insanitydesign.MarkdownViewerPlusPlus.Forms
                 //Only refresh if it hasn't been cancelled
                 if(!token.IsCancellationRequested)
                 {
-                    ConvertedText = CommonMarkConverter.Convert(text);
+                    ConvertedText = Markdown.ToHtml(text, this.markdownPipeline);
                     this.markdownViewerHtmlPanel.Text = BuildHtml(ConvertedText, FileInfo.FileName);
                 }                
             }, token);
